@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox fx:controller="com.securesign.controllers.verification.SignatureVerificationController"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="10" alignment="CENTER">
+
+    <Label text="Document Verification" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="5">
+        <Button text="Open Document" onAction="#openDocument"/>
+        <Label fx:id="docNameLabel"/>
+    </HBox>
+
+    <HBox spacing="5">
+        <Button text="Load Public Key" onAction="#loadPublicKey"/>
+        <Label fx:id="keyNameLabel"/>
+    </HBox>
+
+    <HBox spacing="5">
+        <Button text="Load Signature File" onAction="#loadSignatureFile"/>
+        <Button text="Paste Signature" onAction="#pasteSignature"/>
+    </HBox>
+
+    <TextArea fx:id="signatureTextArea" promptText="Signature (Base64)" prefRowCount="5"/>
+
+    <Button text="Verify Signature" onAction="#verifySignature"/>
+    <Label fx:id="resultLabel" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+    <Button text="Generate Verification Report" onAction="#generateReport"/>
+</VBox>

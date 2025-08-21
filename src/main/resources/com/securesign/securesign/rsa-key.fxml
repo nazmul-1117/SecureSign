@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1024.0" stylesheets="" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.securesign.controllers.rsa_key.RSAKeyGeneratorController">
+    <children>
+        <VBox prefHeight="700.0" prefWidth="1024.0">
+            <children>
+                <AnchorPane prefHeight="200.0" prefWidth="1024.0" styleClass="intro" stylesheets="@styles/hamming.css">
+                    <children>
+                        <Label prefHeight="199.0" prefWidth="1024.0" text="In cryptography, a private key and a public key are a pair of cryptographic keys used together in asymmetric encryption. The public key is widely shared and used to encrypt data or verify digital signatures, while the private key is kept secret and used to decrypt data or create digital signatures. " textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Cascadia Code Regular" size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding></Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="500.0" prefWidth="1024.0" styleClass="content" stylesheets="@styles/hamming.css">
+                    <children>
+                        <Pane layoutX="25.0" layoutY="20.0" prefHeight="470.0" prefWidth="500.0">
+                            <children>
+                                <Label layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="200.0" text="Algorithm" textFill="WHITE">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <JFXRadioButton fx:id="keylen1024RB" layoutX="10.0" layoutY="156.0" selected="true" text="1024" textFill="WHITE">
+                                    <font>
+                                        <Font name="Arial" size="20.0" />
+                                    </font>
+                                    <unSelectedColor>
+                                        <Color red="0.9473684430122375" />
+                                    </unSelectedColor>
+                                </JFXRadioButton>
+                                <JFXRadioButton fx:id="keylen2048RB" layoutX="125.0" layoutY="156.0" text="2048" textFill="WHITE">
+                                    <font>
+                                        <Font name="Arial" size="20.0" />
+                                    </font>
+                                    <unSelectedColor>
+                                        <Color red="1.0" />
+                                    </unSelectedColor>
+                                </JFXRadioButton>
+                                <JFXButton layoutX="78.0" layoutY="375.0" onAction="#loadPublicKey" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Load Public Key">
+                                    <font>
+                                        <Font name="Arial" size="20.0" />
+                                    </font>
+                                </JFXButton>
+                        <JFXRadioButton fx:id="keylen3072RB" layoutX="250.0" layoutY="156.0" text="3072" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                           <unSelectedColor>
+                              <Color red="0.9473684430122375" />
+                           </unSelectedColor>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="keylen4096RB" layoutX="375.0" layoutY="156.0" text="4096" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                           <unSelectedColor>
+                              <Color red="1.0" />
+                           </unSelectedColor>
+                        </JFXRadioButton>
+                        <Label layoutX="10.0" layoutY="106.0" prefHeight="30.0" prefWidth="200.0" text="Key Length (bits)" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <JFXRadioButton fx:id="algorithmRSAB" layoutX="10.0" layoutY="50.0" selected="true" text="RSA" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                           <unSelectedColor>
+                              <Color red="0.9473684430122375" />
+                           </unSelectedColor>
+                        </JFXRadioButton>
+                        <JFXRadioButton disable="true" layoutX="125.0" layoutY="50.0" text="ECC" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                           <unSelectedColor>
+                              <Color red="1.0" />
+                           </unSelectedColor>
+                        </JFXRadioButton>
+                        <JFXButton layoutX="228.0" layoutY="375.0" onAction="#loadPrivateKey" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Load Private Key">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="78.0" layoutY="305.0" onAction="#savePublicKey" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Save Public Key">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="228.0" layoutY="305.0" onAction="#savePrivateKey" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Save Private Key">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="148.0" layoutY="229.0" onAction="#generateKey" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Generate Keys">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </JFXButton>
+                            </children>
+                        </Pane>
+                        <Line endX="500.0" endY="480.0" startX="500.0" startY="10.0" />
+                        <Pane focusTraversable="true" layoutX="514.0" layoutY="9.0" prefHeight="450.0" prefWidth="500.0">
+                            <children>
+                                <Label layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="303.0" text="Public Key" textFill="WHITE">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <TextField fx:id="publicKeyTF" editable="false" layoutX="10.0" layoutY="37.0" prefHeight="64.0" prefWidth="470.0" promptText="public key" styleClass="textField" stylesheets="@styles/hamming.css">
+                                    <font>
+                                        <Font name="Cascadia Code Regular" size="36.0" />
+                                    </font></TextField>
+                                <Label layoutX="1.0" layoutY="241.0" prefHeight="30.0" prefWidth="200.0" text="Message" textFill="WHITE">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <Label fx:id="messageLB" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="289.0" prefHeight="158.0" prefWidth="489.0" text="Typing... 😉" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                    <font>
+                                        <Font name="Britannic Bold" size="24.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </Label>
+                        <Label layoutX="10.0" layoutY="120.0" prefHeight="30.0" prefWidth="303.0" text="Private Key" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <TextField fx:id="privateKeyTF" editable="false" layoutX="10.0" layoutY="140.0" prefHeight="64.0" prefWidth="470.0" promptText="private  key" styleClass="textField" stylesheets="@styles/hamming.css">
+                           <font>
+                              <Font name="Cascadia Code Regular" size="36.0" />
+                           </font>
+                        </TextField>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Pane>
+                    </children></AnchorPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

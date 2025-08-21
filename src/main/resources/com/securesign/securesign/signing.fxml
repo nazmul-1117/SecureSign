@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1024.0" stylesheets="" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.securesign.controllers.signing.SignatureController">
+    <children>
+        <VBox prefHeight="700.0" prefWidth="1024.0">
+            <children>
+                <AnchorPane prefHeight="200.0" prefWidth="1024.0" styleClass="intro" stylesheets="@styles/hamming.css">
+                    <children>
+                        <Label prefHeight="199.0" prefWidth="1024.0" text="Document signing is the process of creating a digital signature for a document to guarantee its authenticity and integrity. It involves two main steps: first, a unique hash (or digital fingerprint) of the document is generated using a hashing algorithm like SHA-256. Second, this hash is encrypted using your private key. The result is the digital signature, which is a small file that's attached to the original document. This entire process ensures that the document hasn't been tampered with and proves it was signed by you, as only you possess the private key needed to create that specific signature." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Cascadia Code Regular" size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding></Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="500.0" prefWidth="1024.0" styleClass="content" stylesheets="@styles/hamming.css">
+                    <children>
+                        <Pane layoutX="25.0" layoutY="20.0" prefHeight="470.0" prefWidth="500.0">
+                            <children>
+                                <JFXButton layoutX="10.0" layoutY="124.0" onAction="#openDocument" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Open Document">
+                                    <font>
+                                        <Font name="Arial" size="20.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXButton layoutX="10.0" layoutY="204.0" onAction="#openKey" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Private Key">
+                                    <font>
+                                        <Font name="Arial" size="20.0" />
+                                    </font>
+                                </JFXButton>
+                        <Label fx:id="documentName" layoutX="160.0" layoutY="124.0" prefHeight="37.0" prefWidth="309.0" text="Name:" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label fx:id="keyName" layoutX="160.0" layoutY="204.0" prefHeight="37.0" prefWidth="309.0" text="Name:" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                                <JFXButton layoutX="160.0" layoutY="282.0" onAction="#signDocument" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Sign Document">
+                                    <font>
+                                        <Font name="Arial" size="20.0" />
+                                    </font>
+                                </JFXButton>
+                        <JFXButton layoutX="160.0" layoutY="392.0" onAction="#saveSignature" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Save Signature">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </JFXButton>
+                            </children>
+                        </Pane>
+                        <Line endX="500.0" endY="480.0" startX="500.0" startY="10.0" />
+                        <Pane focusTraversable="true" layoutX="514.0" layoutY="9.0" prefHeight="450.0" prefWidth="500.0">
+                            <children>
+                                <Label layoutX="2.0" layoutY="23.0" prefHeight="30.0" prefWidth="200.0" text="Message" textFill="WHITE">
+                                    <font>
+                                        <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <Label fx:id="messageLB" alignment="CENTER" contentDisplay="CENTER" layoutX="-9.0" layoutY="63.0" prefHeight="59.0" prefWidth="489.0" text="Typing... 😉" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                    <font>
+                                        <Font name="Britannic Bold" size="24.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </Label>
+                        <Label layoutX="6.0" layoutY="128.0" prefHeight="30.0" prefWidth="200.0" text="Signature" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <JFXTextArea fx:id="signatureTextArea" focusColor="#001b05" layoutX="13.0" layoutY="166.0" prefHeight="268.0" prefWidth="471.0" unFocusColor="#e5ffed">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextArea>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </Pane>
+                    </children></AnchorPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

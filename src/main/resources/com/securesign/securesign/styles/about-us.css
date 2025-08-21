@@ -1,0 +1,11 @@
+.nazmulPic{
+    -fx-background-image: url("file:src/main/resources/com/securesign/securesign/images/q1.gif");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 125px;
+}
+
+.fuadPic{
+    -fx-background-image: url("file:src/main/resources/com/securesign/securesign/images/q2.gif");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 125px;
+}

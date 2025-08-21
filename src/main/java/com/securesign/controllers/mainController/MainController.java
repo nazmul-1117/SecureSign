@@ -1,9 +1,9 @@
-package com.securesign.securesign;
+package com.securesign.controllers.mainController;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class MainController {
     @FXML
     private Label welcomeText;
 

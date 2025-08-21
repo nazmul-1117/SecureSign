@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.securesign.controllers.about.AboutController">
+    <children>
+        <VBox prefHeight="700.0" prefWidth="1024.0">
+            <children>
+                <AnchorPane prefHeight="300.0" prefWidth="1026.0" styleClass="intro" stylesheets="@styles/hamming.css">
+                    <children>
+                        <Label fx:id="aboutUsIntroLabel" prefHeight="300.0" prefWidth="1026.0" textFill="#1efbff">
+                            <font>
+                                <Font name="Cascadia Code Regular" size="16.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="400.0" prefWidth="1026.0" styleClass="content" stylesheets="@styles/hamming.css">
+                    <children>
+                        <Pane prefHeight="400.0" prefWidth="510.0">
+                            <children>
+                                <Pane layoutX="150.0" layoutY="20.0" prefHeight="134.0" prefWidth="211.0" styleClass="nazmulPic" stylesheets="@styles/about-us.css" />
+                                <Label fx:id="nazmulIntro" layoutX="56.0" layoutY="147.0" prefHeight="225.0" prefWidth="419.0" textFill="#3eff28" wrapText="true">
+                                    <font>
+                                        <Font name="Cascadia Code Regular" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+                        <Line endX="511.0" endY="390.0" startX="511.0" startY="10.0" />
+                        <Pane layoutX="510.0" prefHeight="400.0" prefWidth="510.0">
+                            <children>
+                                <Pane layoutX="150.0" layoutY="20.0" prefHeight="134.0" prefWidth="211.0" styleClass="fuadPic" stylesheets="@styles/about-us.css" />
+                                <Label fx:id="fuadIntro" layoutX="50.0" layoutY="147.0" prefHeight="225.0" prefWidth="419.0" textFill="#3eff28" wrapText="true">
+                                    <font>
+                                        <Font name="Cascadia Code Regular" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

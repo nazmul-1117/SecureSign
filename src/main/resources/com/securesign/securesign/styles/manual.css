@@ -1,0 +1,35 @@
+.hamming-code{
+        -fx-background-color: #24212e80;
+        -fx-background-radius: 30px;
+
+        -fx-border-radius: 0px;
+        -fx-border-style: none;
+        -fx-border-width: 2px 2px 2px 2px;
+}
+
+.crc{
+        -fx-background-color: #212e2680;
+        -fx-background-radius: 30px;
+
+        -fx-border-radius: 0px;
+        -fx-border-style: none;
+        -fx-border-width: 2px 2px 2px 2px;
+}
+
+.checksum{
+        -fx-background-color: #2e2e2180;
+        -fx-background-radius: 30px;
+
+        -fx-border-radius: 0px;
+        -fx-border-style: none;
+        -fx-border-width: 2px 2px 2px 2px;
+}
+
+.stuff{
+        -fx-background-color: #2e212580;
+        -fx-background-radius: 30px;
+
+        -fx-border-radius: 0px;
+        -fx-border-style: none;
+        -fx-border-width: 2px 2px 2px 2px;
+}
