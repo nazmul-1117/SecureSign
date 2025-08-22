@@ -21,7 +21,6 @@ public class RSAKeyGenerator {
         this.keyLength = Integer.parseInt(keyLength);
     }
 
-    // 🔑 Generate RSA keys
     public boolean generateKey(ActionEvent e) {
         try {
             KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
@@ -34,7 +33,6 @@ public class RSAKeyGenerator {
         }
     }
 
-    // ----- Getters -----
     public String getPublicKeyString() {
         if (keyPair == null) return null;
         return Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded());

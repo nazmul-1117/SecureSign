@@ -23,10 +23,8 @@ public class DocumentController implements Initializable {
     private File selectedFile;
     private String fileHash;
 
-    // Shared last directory
     private File lastDirectory = new File(System.getProperty("user.home"));
 
-    /** Open a file and show metadata */
     public void openDocument(ActionEvent event) {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open Document");
@@ -47,7 +45,6 @@ public class DocumentController implements Initializable {
         }
     }
 
-    /** Compute SHA-256 hash of selected file */
     public void computeHash(ActionEvent event) {
         try {
             if (selectedFile != null) {
@@ -62,7 +59,6 @@ public class DocumentController implements Initializable {
         }
     }
 
-    /** Save computed hash to a .hash file */
     public void saveHash(ActionEvent event) {
         try {
             if (selectedFile != null && fileHash != null) {
@@ -93,7 +89,6 @@ public class DocumentController implements Initializable {
         }
     }
 
-    /** Verify file hash against a .hash file */
     public void verifyHash(ActionEvent event) {
         try {
             if (selectedFile == null) {
@@ -115,7 +110,7 @@ public class DocumentController implements Initializable {
 
                 String expectedHash = DocumentUtils.loadHashFromFile(hashFile);
                 boolean valid = DocumentUtils.verifyFileHash(selectedFile, expectedHash);
-                fileHashLabel.setText(valid ? "✅ Hash matches" : "❌ Hash mismatch");
+                fileHashLabel.setText(valid ? "Hash matches" : "Hash mismatch");
             }
         } catch (Exception e) {
             fileHashLabel.setText("Error verifying hash: " + e.getMessage());

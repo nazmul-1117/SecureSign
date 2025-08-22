@@ -11,6 +11,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.nio.file.Files;
 import java.security.PublicKey;
+import java.util.Base64;
 
 public class SignatureVerificationController {
 
@@ -25,7 +26,6 @@ public class SignatureVerificationController {
 
     private File lastDirectory = new File(System.getProperty("user.home"));
 
-    /** Open document */
     public void openDocument(ActionEvent e) {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select Document");
@@ -39,7 +39,6 @@ public class SignatureVerificationController {
         }
     }
 
-    /** Load public key */
     public void loadPublicKey(ActionEvent e) {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select Public Key (PEM)");
@@ -59,7 +58,6 @@ public class SignatureVerificationController {
         }
     }
 
-    /** Load signature file */
     public void loadSignatureFile(ActionEvent e) {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Load Signature File (.sig)");
@@ -69,8 +67,12 @@ public class SignatureVerificationController {
         File sigFile = chooser.showOpenDialog(null);
         if (sigFile != null) {
             try {
-                signatureBytes = SignatureUtils.loadSignatureFromFile(sigFile);
-                signatureTextArea.setText(SignatureUtils.signatureToBase64(signatureBytes));
+                // Load the signature bytes (already decoded from Base64)
+                signatureBytes = SignatureUtils.loadSignatureFromFileBase64(sigFile);
+
+                // Only display Base64 version for user reference
+                signatureTextArea.setText(Base64.getEncoder().encodeToString(signatureBytes));
+
                 resultLabel.setText("Signature loaded.");
                 lastDirectory = sigFile.getParentFile();
             } catch (Exception ex) {
@@ -80,7 +82,6 @@ public class SignatureVerificationController {
         }
     }
 
-    /** Paste Base64 signature */
     public void pasteSignature(ActionEvent e) {
         try {
             signatureBytes = SignatureUtils.base64ToSignature(signatureTextArea.getText().trim());
@@ -90,7 +91,6 @@ public class SignatureVerificationController {
         }
     }
 
-    /** Verify signature */
     public void verifySignature(ActionEvent e) {
         try {
             if (selectedDocument == null || signatureBytes == null || publicKey == null) {
@@ -98,14 +98,13 @@ public class SignatureVerificationController {
                 return;
             }
             boolean valid = SignatureUtils.verifyFile(selectedDocument, signatureBytes, publicKey);
-            resultLabel.setText(valid ? "✅ VALID" : "❌ INVALID");
+            resultLabel.setText(valid ? "VALID" : "INVALID");
         } catch (Exception ex) {
             resultLabel.setText("Error verifying: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
 
-    /** Generate verification report */
     public void generateReport(ActionEvent e) {
         try {
             if (selectedDocument == null || signatureBytes == null || publicKey == null) {

@@ -7,9 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.Base64;
 
 public class SignatureController {
 
@@ -25,7 +28,6 @@ public class SignatureController {
 
     private File lastDirectory = new File(System.getProperty("user.home"));
 
-    /** Open a document to sign or verify */
     public void openDocument(ActionEvent event) {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select Document");
@@ -39,7 +41,6 @@ public class SignatureController {
         }
     }
 
-    /** Open a private key to sign document */
     public void openKey(ActionEvent event) {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select Private Key (PEM)");
@@ -59,7 +60,6 @@ public class SignatureController {
         }
     }
 
-    /** Sign the document using the loaded private key */
     public void signDocument(ActionEvent event) {
         try {
             if (selectedDocument == null) {
@@ -87,7 +87,6 @@ public class SignatureController {
         }
     }
 
-    /** Save signature as Base64 text */
     public void saveSignature(ActionEvent event) {
         if (signatureBytes == null || selectedDocument == null) {
             messageLB.setText("No signature to save!");
@@ -105,7 +104,12 @@ public class SignatureController {
 
             File sigFile = chooser.showSaveDialog(null);
             if (sigFile != null) {
-                SignatureUtils.saveSignatureToFileBase64(signatureBytes, sigFile);
+                String encodedSignature = Base64.getEncoder().encodeToString(signatureBytes);
+
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(sigFile))) {
+                    writer.write(encodedSignature.trim());
+                }
+
                 lastDirectory = sigFile.getParentFile();
                 messageLB.setText("Signature saved: " + sigFile.getName());
             }
@@ -115,29 +119,6 @@ public class SignatureController {
         }
     }
 
-    /** Load external signature from Base64 .sig file */
-    public void loadSignature(ActionEvent event) {
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("Load Signature File (.sig)");
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Signature Files", "*.sig"));
-        if (lastDirectory.exists()) chooser.setInitialDirectory(lastDirectory);
-
-        File sigFile = chooser.showOpenDialog(null);
-        if (sigFile != null) {
-            try {
-                signatureBytes = SignatureUtils.loadSignatureFromFileBase64(sigFile);
-                String base64Signature = SignatureUtils.signatureToBase64(signatureBytes);
-                signatureTextArea.setText(base64Signature);
-                lastDirectory = sigFile.getParentFile();
-                messageLB.setText("Signature loaded: " + sigFile.getName());
-            } catch (Exception e) {
-                messageLB.setText("Error loading signature: " + e.getMessage());
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /** Copy signature text to clipboard */
     public void copySignature(ActionEvent event) {
         if (signatureTextArea.getText().isEmpty()) {
             messageLB.setText("No signature to copy!");
@@ -152,7 +133,6 @@ public class SignatureController {
         messageLB.setText("Signature copied to clipboard");
     }
 
-    /** Verify signature using public key */
     public void verifySignature(ActionEvent event) {
         if (selectedDocument == null || signatureBytes == null || publicKey == null) {
             messageLB.setText("Document, signature, or public key missing!");
@@ -161,14 +141,13 @@ public class SignatureController {
 
         try {
             boolean valid = SignatureUtils.verifyFile(selectedDocument, signatureBytes, publicKey);
-            messageLB.setText(valid ? "✅ Signature valid" : "❌ Signature invalid");
+            messageLB.setText(valid ? "Signature valid" : "Signature invalid");
         } catch (Exception e) {
             messageLB.setText("Error verifying signature: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    /** Load public key for verification */
     public void loadPublicKey(ActionEvent event) {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select Public Key (PEM)");

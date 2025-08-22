@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.Pane;
 
 import java.io.File;
 import java.net.URL;
@@ -60,9 +59,9 @@ public class RSAKeyGeneratorController implements Initializable {
             privateKeyTF.setText(privateKey);
             publicKeyTF.setText(publicKey);
 
-            messageLB.setText("Key Generated Successfully ✅");
+            messageLB.setText("Key Generated Successfully");
         }else {
-            messageLB.setText("Get Error for Generate Keys ❌");
+            messageLB.setText("Get Error for Generate Keys");
         }
     }
 
@@ -70,27 +69,6 @@ public class RSAKeyGeneratorController implements Initializable {
         System.out.println("Algorithm: " + algorithm);
         System.out.println("Key Length: " + keyLength);
     }
-
-    // Save Public Key
-//    public void savePublicKey(ActionEvent actionEvent) {
-//        try {
-//            if (rsaKeyGenerator == null || rsaKeyGenerator.getPublicKey() == null) {
-//                messageLB.setText("Generate keys first!");
-//                return;
-//            }
-//            FileChooser chooser = new FileChooser();
-//            chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PEM files", "*.pem"));
-//            chooser.setTitle("Save Public Key");
-//            File file = chooser.showSaveDialog(null);
-//            if (file != null) {
-//                rsaKeyGenerator.savePublicKey(file);
-//                messageLB.setText("Public key saved: " + file.getName());
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            messageLB.setText("Error saving public key: " + e.getMessage());
-//        }
-//    }
 
     public void savePublicKey(ActionEvent actionEvent) {
         try {
@@ -126,8 +104,6 @@ public class RSAKeyGeneratorController implements Initializable {
         }
     }
 
-
-    // Save Private Key
     public void savePrivateKey(ActionEvent actionEvent) {
         try {
             if (rsaKeyGenerator == null || rsaKeyGenerator.getPrivateKey() == null) {
@@ -162,8 +138,6 @@ public class RSAKeyGeneratorController implements Initializable {
         }
     }
 
-
-    // Load Public Key
     public void loadPublicKey(ActionEvent actionEvent) {
         try {
             FileChooser chooser = new FileChooser();
@@ -191,7 +165,6 @@ public class RSAKeyGeneratorController implements Initializable {
         }
     }
 
-    // Load Private Key
     public void loadPrivateKey(ActionEvent actionEvent) {
         try {
             FileChooser chooser = new FileChooser();
@@ -219,19 +192,10 @@ public class RSAKeyGeneratorController implements Initializable {
         }
     }
 
-
-
-
-
-
-
     public void generateKey(ActionEvent actionEvent) {
         collectData();
         algorithmRun(actionEvent);
     }
-
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

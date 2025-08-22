@@ -9,12 +9,10 @@ import java.util.Base64;
 
 public class KeyUtils {
 
-    // Save Public Key in PEM format
     public static void savePublicKey(PublicKey publicKey, File file) throws IOException {
         savePemFile(file, "PUBLIC KEY", publicKey.getEncoded());
     }
 
-    // Save Private Key in PEM format
     public static void savePrivateKey(PrivateKey privateKey, File file) throws IOException {
         savePemFile(file, "PRIVATE KEY", privateKey.getEncoded());
     }
@@ -26,7 +24,6 @@ public class KeyUtils {
         Files.writeString(file.toPath(), pem);
     }
 
-    // ---------------- Loading Keys ----------------
 
     public static PrivateKey loadPrivateKey(File file) throws Exception {
         String pem = Files.readString(file.toPath());

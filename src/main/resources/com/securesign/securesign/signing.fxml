@@ -60,7 +60,12 @@
                                         <Font name="Arial" size="20.0" />
                                     </font>
                                 </JFXButton>
-                        <JFXButton layoutX="160.0" layoutY="392.0" onAction="#saveSignature" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Save Signature">
+                        <JFXButton layoutX="70.0" layoutY="375.0" onAction="#saveSignature" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Save Signature">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="250.0" layoutY="375.0" onAction="#copySignature" prefHeight="37.0" prefWidth="125.0" styleClass="send-button" stylesheets="@styles/hamming.css" text="Copy Signature">
                            <font>
                               <Font name="Arial" size="20.0" />
                            </font>
